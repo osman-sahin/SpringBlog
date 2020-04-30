@@ -10,21 +10,21 @@
 
 @foreach (var post in Model.Posts)
 {
-<!-- Blog Post -->
-<div class="card mb-4">
-    <img class="card-img-top" src="https://placehold.it/750x50" alt="Card image cap">
-    <div class="card-body">
-        <h2 class="card-title">@post.Title</h2>
-        
-        @Html.Raw(post.Content)
+    <!-- Blog Post -->
+    <div class="card mb-4">
+        <img class="card-img-top" src="https://placehold.it/750x50" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">@post.Title</h2>
 
-        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            @Html.Raw(post.Content)
+
+            <a href="@Url.Action("Show", "Post", new { slug = post.Slug})" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            Posted on @post.CreationTime.Value.ToShortDateString() by
+            <a href="#">@(post.Author.DisplayName ?? "Anonymous")</a>
+        </div>
     </div>
-    <div class="card-footer text-muted">
-        Posted on @post.CreationTime.Value.ToShortDateString() by
-        <a href="#">@(post.Author.DisplayName ?? "Anonymous")</a>
-    </div>
-</div>
 }
 
 
