@@ -1,5 +1,4 @@
 ﻿using SpringBlog.Areas.Admin.ViewModels;
-using SpringBlog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +21,5 @@ namespace SpringBlog.Areas.Admin.Controllers
             };
             return View(vm);
         }
-
     }
 }

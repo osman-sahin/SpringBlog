@@ -3,7 +3,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<h1>
+<h1 class="my-4">
     My Blog Posts
     <small>Who watches the watchman</small>
 </h1>
@@ -11,12 +11,12 @@
 @foreach (var post in Model.Posts)
 {
     <!-- Blog Post -->
-    <div class="card mb-4 blog-post">
+    <div class="card mb-4">
         <img class="card-img-top" src="https://placehold.it/750x50" alt="Card image cap">
         <div class="card-body">
             <h2 class="card-title">@post.Title</h2>
 
-                @Html.Raw(post.Content)
+            @Html.Raw(post.Content)
 
             <a href="@Url.Action("Show", "Post", new { slug = post.Slug})" class="btn btn-primary">Read More &rarr;</a>
         </div>
