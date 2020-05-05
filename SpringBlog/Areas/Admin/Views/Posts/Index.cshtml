@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Image</th>
                     <th>Post Name</th>
                     <th>Author</th>
                     <th>Category</th>
@@ -25,6 +26,7 @@
                 {
                     <tr>
                         <td>@item.Id</td>
+                        <td><img src="@Url.FeaturedImage(item.FeaturedImagePath)" alt="FeaturedImg" width="40" /></td>
                         <td>@item.Title</td>
                         <td>@item.Author.DisplayName</td>
                         <td>@item.Category.CategoryName</td>

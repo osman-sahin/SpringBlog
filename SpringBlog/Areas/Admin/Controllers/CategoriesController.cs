@@ -38,7 +38,7 @@ namespace SpringBlog.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new  HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Category category = db.Categories.Find(id);
@@ -69,6 +69,12 @@ namespace SpringBlog.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             var category = db.Categories.Find(id);
+
+            if (category.Posts.Count > 0)
+            {
+                TempData["ErrorMessage"] = "A Category must contains no post in order to be deleted";
+                return RedirectToAction("Index");
+            }
 
             if (category != null)
             {

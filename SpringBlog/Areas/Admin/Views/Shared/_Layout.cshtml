@@ -290,6 +290,7 @@
     <script src="~/Areas/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="~/Areas/Admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="~/Areas/Admin/plugins/toastr/toastr.min.js"></script>
+    <script src="~/Areas/Admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Areas/Admin/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
@@ -297,7 +298,7 @@
     <script src="~/Areas/Admin/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="~/Areas/Admin/dist/js/admin.custom.js"></script>
     @RenderSection("scripts", false)
-<script>
+    <script>
         @if (TempData["SuccessMessage"] != null)
         {
             <text>toastr.success("@(TempData["SuccessMessage"])")</text>
@@ -306,6 +307,6 @@
         {
             <text>toastr.error("@(TempData["ErrorMessage"])")</text>
         }
-</script>
+    </script>
 </body>
 </html>

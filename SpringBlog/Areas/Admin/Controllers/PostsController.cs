@@ -35,15 +35,15 @@ namespace SpringBlog.Areas.Admin.Controllers
                     Title = vm.Title,
                     Content = vm.Content,
                     AuthorId = User.Identity.GetUserId(),
-                    Slug = UrlService.URLFriendly(vm.Title),
+                    Slug = UrlService.URLFriendly(vm.Slug),
                     CreationTime = DateTime.Now,
                     ModificationTime = DateTime.Now,
-                    FeaturedImagePath = ""
+                    FeaturedImagePath = this.SaveImage(vm.FeaturedImage)
                 };
-                //todo: Posts/Index'e yonlendir
+
                 db.Posts.Add(post);
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "The Post has been deleted successfuly.";
+                TempData["SuccessMessage"] = "The Post has been added successfuly.";
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(x => x.CategoryName).ToList(), "Id", "CategoryName");
@@ -97,6 +97,12 @@ namespace SpringBlog.Areas.Admin.Controllers
             }
 
             return View(db.Posts.Find(post.Id));
+        }
+
+        [HttpPost]
+        public string ConvertToSlug(string title) 
+        {
+            return UrlService.URLFriendly(title);
         }
     }
 }
