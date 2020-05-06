@@ -25,3 +25,7 @@
 .show-post img {
     max-width: 100%;
 }
+
+.min-vh-85{
+    min-height:85vh;
+}

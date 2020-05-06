@@ -4,9 +4,20 @@
 }
 
 <h1>
-    My Blog Posts
-    <small>Who watches the watchman</small>
+    @if (Model.SearchTerm != null)
+    {
+        <text>Search Results for &quot;@Model.SearchTerm&quot;:</text>
+    }
+    else
+    {
+        @(Model.Category == null ? "My Blog Posts" : $"Posts in \" {Model.Category.CategoryName} \"")
+    }
 </h1>
+
+@if (!Model.Posts.Any() && Model.SearchTerm != null)
+{
+    <p class="my-3">No results found!</p>
+}
 
 @foreach (var post in Model.Posts)
 {
@@ -14,7 +25,7 @@
     <div class="card mb-4 blog-post">
         @if (!string.IsNullOrEmpty(post.FeaturedImagePath))
         {
-        <img class="card-img-top" src="@Url.FeaturedImage(post.FeaturedImagePath)" alt="@(post.Title) Image">
+            <img class="card-img-top" src="@Url.FeaturedImage(post.FeaturedImagePath)" alt="@(post.Title) Image">
         }
         <div class="card-body">
             <h2 class="card-title">@post.Title</h2>
@@ -30,9 +41,8 @@
     </div>
 }
 
-
 <!-- Pagination -->
-<ul class="pagination justify-content-center mb-4">
+<ul class="pagination justify-content-center mb-4 mt-auto">
     <li class="page-item">
         <a class="page-link" href="#">&larr; Older</a>
     </li>

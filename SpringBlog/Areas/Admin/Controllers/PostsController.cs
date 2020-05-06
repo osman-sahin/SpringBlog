@@ -58,12 +58,13 @@ namespace SpringBlog.Areas.Admin.Controllers
 
             if (post != null)
             {
+                this.DeleteImage(post.FeaturedImagePath);
                 db.Posts.Remove(post);
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "The Post has been deleted successfuly.";
                 return RedirectToAction("Index");
             }
-
+            
             TempData["ErrorMessage"] = "The Post is not exist or already deleted.";
             return RedirectToAction("Index");
         }
@@ -75,28 +76,50 @@ namespace SpringBlog.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Post post = db.Posts.Find(id);
+            var post = db.Posts.Find(id);
 
             if (post == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.PostName = post.Title;
-            return View(post);
+            var vm = new EditPostViewModel
+            {
+                Id=post.Id,
+                CategoryId= post.CategoryId,
+                Content = post.Content,
+                CreationTime = post.CreationTime.Value,
+                CurrentFeaturedImage = post.FeaturedImagePath,
+                ModificationTime = post.ModificationTime.Value,
+                Slug = post.Slug,
+                Title= post.Title
+            };
+
+            ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(x => x.CategoryName).ToList(), "Id", "CategoryName");
+            return View(vm);
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edit(Post post)
+        public ActionResult Edit(EditPostViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
+                var post = db.Posts.Find(vm.Id);
+                post.CategoryId = vm.CategoryId;
+                post.Title = vm.Title;
+                post.Content = vm.Content;
+                post.ModificationTime = DateTime.Now;
+                post.Slug = UrlService.URLFriendly(vm.Slug);
+                if (vm.FeaturedImage != null)
+                {
+                    this.DeleteImage(post.FeaturedImagePath);
+                    post.FeaturedImagePath = this.SaveImage(vm.FeaturedImage);
+                }
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "The Post has been changed successfuly.";
+                TempData["SuccessMessage"] = "The Post has been updated successfuly.";
                 return RedirectToAction("Index");
             }
-
-            return View(db.Posts.Find(post.Id));
+            ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(x => x.CategoryName).ToList(), "Id", "CategoryName");
+            return View(vm);
         }
 
         [HttpPost]

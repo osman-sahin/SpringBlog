@@ -1,14 +1,19 @@
-﻿@model NewPostViewModel
+﻿@model EditPostViewModel
 @{
-    ViewBag.Title = "New Post";
+    ViewBag.Title = "Edit Post";
 }
 
-@using (Html.BeginForm("New", "Posts", FormMethod.Post, new { enctype = "multipart/form-data"}))
+@using (Html.BeginForm("Edit", "Posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.CurrentFeaturedImage)
+    @Html.HiddenFor(x => x.CreationTime)
+    @Html.HiddenFor(x => x.ModificationTime)
+
     <div class="card card-success">
         <div class="card-header">
-            <h3 class="card-title">Add New Post</h3>
+            <h3 class="card-title">Update the Post</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -31,13 +36,22 @@
                 @Html.TextAreaFor(x => x.Content, new { @class = "form-control", data_snote = "true" })
                 @Html.ValidationMessageFor(x => x.Content, null, new { @class = "text-danger" })
             </div>
+            <div class="small text-right my-1">
+                @Html.LabelFor(x => x.CreationTime)
+                @Html.DisplayFor(x => x.CreationTime)
+
+                @Html.LabelFor(x => x.ModificationTime, new { @class = "ml-1" })
+                @Html.DisplayFor(x => x.ModificationTime)
+            </div>
             <div class="row">
                 <div class="col-md-6 form-inline align-content-start my-1">
                     <label for="exampleInputFile">Featured Image</label>
                     <div class="input-group flex-fill ml-2">
                         <div class="custom-file">
                             <input type="file" name="FeaturedImage" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label justify-content-start" for="exampleInputFile">Choose file</label>
+                            <label id="currentFeaturedImageLabel" class="custom-file-label justify-content-start" for="exampleInputFile">
+                                @(string.IsNullOrEmpty(Model.CurrentFeaturedImage) ? "Choose File" : Model.CurrentFeaturedImage)
+                            </label>
                         </div>
                         <div class="col-3">@Html.ValidationMessage("FeaturedImage", null, new { @class = "text-danger" })</div>
                     </div>
@@ -51,10 +65,10 @@
             </div>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
+        <div class="card-footer row">
             <div class="float-left">
                 <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
-                <button type="submit" class="btn btn-success">Post it!</button>
+                <button type="submit" class="btn btn-success">Update it!</button>
             </div>
         </div>
         <!-- /.card-footer -->
@@ -64,6 +78,7 @@
 @section scripts {
     <script>
         $(function () {
+
             $("#Title").change(function () {
                 if (!$("#Slug").val()) {
                     generateSlug();
