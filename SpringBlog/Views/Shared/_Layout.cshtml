@@ -13,6 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     @Styles.Render("~/Content/bootstrap")
+    <link href="~/Content/croppie.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
     @Styles.Render("~/Content/css")
@@ -134,6 +135,8 @@
     <!-- Bootstrap core JavaScript -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/croppie.js"></script>
+    <script src="~/Areas/Admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script src="~/Scripts/Site.js"></script>
     @RenderSection("scripts", false)
 </body>

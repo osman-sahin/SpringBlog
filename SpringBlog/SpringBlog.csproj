@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202004291623502_Initial.Designer.cs">
       <DependentUpon>202004291623502_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005071611233_UserImage.cs" />
+    <Compile Include="Migrations\202005071611233_UserImage.Designer.cs">
+      <DependentUpon>202005071611233_UserImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -1906,15 +1910,18 @@
     <Content Include="Content\bundle.min.css">
       <DependentUpon>bundle.css</DependentUpon>
     </Content>
+    <Content Include="Content\croppie.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\notFound.jpg" />
+    <Content Include="Images\noUserImage.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\croppie.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -2117,6 +2124,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Upload\.gitignore" />
+    <Content Include="Upload\UserImages\.gitignore" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2276,6 +2284,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004291623502_Initial.resx">
       <DependentUpon>202004291623502_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005071611233_UserImage.resx">
+      <DependentUpon>202005071611233_UserImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

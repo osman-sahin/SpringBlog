@@ -29,3 +29,9 @@
 .min-vh-85{
     min-height:85vh;
 }
+
+.cropper-wrapper {
+    width: 300px;
+    height: 345px;
+    padding-bottom: 45px;
+}

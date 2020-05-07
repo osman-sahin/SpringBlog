@@ -29,6 +29,12 @@ body {
 .min-vh-85{
     min-height:85vh;
 }
+
+.cropper-wrapper {
+    width: 300px;
+    height: 345px;
+    padding-bottom: 45px;
+}
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
