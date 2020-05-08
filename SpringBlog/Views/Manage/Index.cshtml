@@ -121,7 +121,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="btnUpload" type="button" class="btn btn-primary">Crop &amp; Save!</button>
+                <button id="btnUpload" type="button" class="btn btn-primary" disabled>Crop &amp; Save!</button>
             </div>
         </div>
     </div>
@@ -133,6 +133,17 @@
 
         $("#file-input").change(function () {
             readFile(this);
+
+            if (this.files && this.files[0]) {
+                $("#btnUpload").removeAttr("disabled");
+            }
+            else {
+                $("#btnUpload").attr("disabled", "disabled");
+                if (cropper) {
+                    cropper.croppie('destroy');
+                    cropper = null;
+                }
+            }
         });
 
         function readFile(input) {
@@ -154,6 +165,8 @@
         $('#ModalChangeImage').on('hidden.bs.modal', function (e) {
             $("#file-input").val(null);
             $(".custom-file-label").text("Choose file");
+            $("#btnUpload").attr("disabled", "disabled");
+
 
             if (cropper) {
             cropper.croppie('destroy');
@@ -162,11 +175,21 @@
         });
 
         $("#btnUpload").click(function () {
+
+            if (!cropper) {
+                return;
+            }
+
             cropper.croppie('result', {
                 type: "base64",
                 size: { width: 300, height: 300 }
             }).then(function (base64) {
                 $("#userImage").attr('src', base64);
+
+                $.post("@Url.Action("UploadUserImage")", { base64: base64 }, function (data) {
+                    $("userImage").attr('src', data.imageUrl);
+                    $("#ModalChangeImage").modal('hide');
+                })
             });
         });
     </script>

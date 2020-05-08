@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SpringBlog.Helpers;
 using SpringBlog.Models;
 using SpringBlog.ViewModels;
 
 namespace SpringBlog.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -321,6 +323,23 @@ namespace SpringBlog.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+        [HttpPost]
+        public ActionResult UploadUserImage(string base64)
+        {
+            if (string.IsNullOrEmpty(base64))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            string fileName = this.SaveUserImage(base64);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            this.DeleteImage(user.UserImage, "UserImages");
+            user.UserImage = fileName;
+            db.SaveChanges();
+
+            return Json(new { imageUrl= Url.UserImage(fileName) });
         }
 
         protected override void Dispose(bool disposing)
