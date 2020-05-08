@@ -22,6 +22,14 @@
                                 @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", placeholder = "Category Name..." })
                                 @Html.ValidationMessageFor(x => x.CategoryName, null, new { @class = "text-danger" })
                             </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Slug)
+                                <div class="form-inline align-content-start">
+                                    @Html.TextBoxFor(x => x.Slug, new { @class = "form-control flex-fill mr-2", placeholder = "short-url" })
+                                    <a id="refreshSlug" href="#" class="mx-1 text-secondary"><i class="fas fa-sync-alt"></i></a>
+                                </div>
+                                @Html.ValidationMessageFor(x => x.Slug, null, new { @class = "text-danger" })
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -35,3 +43,9 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script>
+        slug.run("#CategoryName", "#Slug", "#refreshSlug")
+    </script>
+}

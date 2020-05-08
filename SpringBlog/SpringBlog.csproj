@@ -187,6 +187,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlugController.cs" />
     <Compile Include="Areas\Admin\ViewModels\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\EditPostViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\NewPostViewModel.cs" />
@@ -203,13 +204,9 @@
     <Compile Include="Helpers\ImageUtilities.cs" />
     <Compile Include="Helpers\PostedImageAttribute.cs" />
     <Compile Include="Helpers\UrlService.cs" />
-    <Compile Include="Migrations\202004291623502_Initial.cs" />
-    <Compile Include="Migrations\202004291623502_Initial.Designer.cs">
-      <DependentUpon>202004291623502_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005071611233_UserImage.cs" />
-    <Compile Include="Migrations\202005071611233_UserImage.Designer.cs">
-      <DependentUpon>202005071611233_UserImage.cs</DependentUpon>
+    <Compile Include="Migrations\202005081546596_initial.cs" />
+    <Compile Include="Migrations\202005081546596_initial.Designer.cs">
+      <DependentUpon>202005081546596_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -269,6 +266,7 @@
     <Content Include="Areas\Admin\dist\img\user7-128x128.jpg" />
     <Content Include="Areas\Admin\dist\img\user8-128x128.jpg" />
     <Content Include="Areas\Admin\dist\js\admin.custom.js" />
+    <Content Include="Areas\Admin\dist\js\admin.slug.js" />
     <Content Include="Areas\Admin\dist\js\adminlte.js" />
     <Content Include="Areas\Admin\dist\js\adminlte.min.js" />
     <Content Include="Areas\Admin\dist\js\demo.js" />
@@ -2221,6 +2219,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AdminBase\" />
+    <Folder Include="Areas\Admin\Views\Slug\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -2325,11 +2324,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004291623502_Initial.resx">
-      <DependentUpon>202004291623502_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005071611233_UserImage.resx">
-      <DependentUpon>202005071611233_UserImage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005081546596_initial.resx">
+      <DependentUpon>202005081546596_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

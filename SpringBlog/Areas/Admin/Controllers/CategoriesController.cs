@@ -1,4 +1,5 @@
-﻿using SpringBlog.Models;
+﻿using SpringBlog.Helpers;
+using SpringBlog.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -54,6 +55,7 @@ namespace SpringBlog.Areas.Admin.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Edit(Category category)
         {
+            category.Slug = UrlService.URLFriendly(category.Slug);
             if (ModelState.IsValid)
             {
                 db.Entry(category).State = EntityState.Modified;

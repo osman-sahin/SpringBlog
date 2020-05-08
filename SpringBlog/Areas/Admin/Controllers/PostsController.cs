@@ -121,11 +121,5 @@ namespace SpringBlog.Areas.Admin.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(x => x.CategoryName).ToList(), "Id", "CategoryName");
             return View(vm);
         }
-
-        [HttpPost]
-        public string ConvertToSlug(string title) 
-        {
-            return UrlService.URLFriendly(title);
-        }
     }
 }

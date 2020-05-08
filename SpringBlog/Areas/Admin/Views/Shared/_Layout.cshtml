@@ -175,7 +175,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            @MenuLink("Dashboard","Index","Dashboard","fas fa-tachometer-alt")
+                            @MenuLink("Dashboard", "Index", "Dashboard", "fas fa-tachometer-alt")
                         </li>
                         <li class="nav-item has-treeview menu-open">
                             @MenuLink("Categories", "", "Categories", "fas fa-table", true)
@@ -188,7 +188,7 @@
                             </ul>
                         </li>
                         <li class="nav-item has-treeview menu-open">
-                            @MenuLink("Posts", "", "Posts", "fas fa-file",true)
+                            @MenuLink("Posts", "", "Posts", "fas fa-file", true)
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     @MenuLink("Manage Posts", "Index", "Posts", "fas fa-list")
@@ -269,6 +269,10 @@
     <script src="~/Areas/Admin/dist/js/demo.js"></script>
     <!-- Summernote -->
     <script src="~/Areas/Admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/Areas/Admin/dist/js/admin.slug.js"></script>
+    <script>
+        slug.init('@Url.Action("ConvertToSlug", "Slug")')
+    </script>
     <script src="~/Areas/Admin/dist/js/admin.custom.js"></script>
     @RenderSection("scripts", false)
     <script>
