@@ -342,6 +342,17 @@ namespace SpringBlog.Controllers
             return Json(new { imageUrl= Url.UserImage(fileName) });
         }
 
+        [HttpPost]
+        public ActionResult DeleteUserImage()
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            this.DeleteImage(user.UserImage, "UserImages");
+            user.UserImage = null;
+            db.SaveChanges();
+
+            return Json(new { imageUrl = Url.UserImage(null) });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

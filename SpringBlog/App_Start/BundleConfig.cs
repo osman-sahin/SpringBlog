@@ -17,7 +17,7 @@ namespace SpringBlog
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.bundle.js"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css").Include(
                       "~/Content/bootstrap.css"));  // hazır minified bundle kullanmak icin sadece "Bundle" yazılır. gelistirirken bootscss/bootstrap.css i kullan. yayınlarken CDN'i kullan.
