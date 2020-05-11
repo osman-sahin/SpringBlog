@@ -2,17 +2,10 @@
 
 <form action="@Url.Action("Show")#leave-a-comment" method="post">
     @Html.AntiForgeryToken()
-
-    @if (Request.QueryString["commentSuccess"] == "True")
-    {
-        <div class="alert alert-success">
-            Your comment has been added successfully!
-        </div>
-    }
+    @Html.HiddenFor(x => x.ParentId)
 
     <div class="form-group">
-        @Html.TextAreaFor(x => x.Content, new { @class = "form-control", rows = 3 })
-        @Html.ValidationMessageFor(x => x.Content, null, new { @class = "text-danger" })
+        <textarea name="Content" class="form-control" rows="3" required></textarea>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>

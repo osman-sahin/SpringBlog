@@ -59,6 +59,7 @@ namespace SpringBlog.Controllers
                 {
                     AuthorId = User.Identity.GetUserId(),
                     Content = commentViewModel.Content,
+                    ParentId = commentViewModel.ParentId,
                     CreationTime = DateTime.Now,
                     ModificationTime = DateTime.Now,
                     State = Enums.CommentState.stateApproved,

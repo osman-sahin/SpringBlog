@@ -10,5 +10,6 @@ namespace SpringBlog.ViewModels
     {
         [Required, StringLength(4000)]
         public string Content { get; set; }
+        public int? ParentId { get; set; }
     }
 }

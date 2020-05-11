@@ -2,12 +2,12 @@
 
 <ul class="list-unstyled mb-0">
     <li>
-        @Html.RouteLink("All Categories", "HomeDefault")
+        @Html.RouteLink("All Categories", "HomeDefault", null, new { @class = "text-success" })
     </li>
     @foreach (var cat in Model)
     {
         <li>
-            <a href="@Url.Action("Index","Home", new { cid = cat.Id, slug = cat.Slug })">@cat.CategoryName</a>
+            <a href="@Url.Action("Index","Home", new { cid = cat.Id, slug = cat.Slug })" class="text-success">@cat.CategoryName</a>
         </li>
     }
 </ul>
