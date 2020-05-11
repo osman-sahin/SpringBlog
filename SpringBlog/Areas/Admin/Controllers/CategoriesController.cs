@@ -49,7 +49,6 @@ namespace SpringBlog.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CategoryName = category.CategoryName;
             return View(category);
         }
         [HttpPost, ValidateAntiForgeryToken]
@@ -72,14 +71,14 @@ namespace SpringBlog.Areas.Admin.Controllers
         {
             var category = db.Categories.Find(id);
 
-            if (category.Posts.Count > 0)
-            {
-                TempData["ErrorMessage"] = "A Category must contains no post in order to be deleted";
-                return RedirectToAction("Index");
-            }
 
             if (category != null)
             {
+                if (category.Posts.Count > 0)
+                {
+                    TempData["ErrorMessage"] = "A Category must contains no post in order to be deleted";
+                    return RedirectToAction("Index");
+                }
                 db.Categories.Remove(category);
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "The Category has been deleted successfuly.";
