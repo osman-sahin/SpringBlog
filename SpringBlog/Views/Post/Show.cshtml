@@ -28,29 +28,30 @@
     <div class="card my-4" id="leave-a-comment">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
-            @if (Request.QueryString["commentSuccess"] == "True")
-            {
-                <div class="alert alert-success">
-                    Your comment has been added successfully!
-                </div>
-            }
+
             @if (Request.IsAuthenticated)
             {
+                if (Request.QueryString["commentSuccess"] == "True")
+                {
+                    <div class="alert alert-success">
+                        Your comment has been added successfully!
+                    </div>
+                }
                 @Html.Partial("_CommentFormPartial", Model.CommentViewModel)
             }
             else
             {
                 <p class="mb-0">
                     Please
-                    @Html.ActionLink("login", "Login", "Account", new { returnUrl = Request.Url.AbsolutePath }, null)
+                    @Html.ActionLink("login", "Login", "Account", new { returnUrl = Request.Url.AbsolutePath }, new { @class = "text-success" })
                     or
-                    @Html.ActionLink("register", "Register", "Account")
+                    @Html.ActionLink("register", "Register", "Account", new { @class = "text-success" })
                     to leave a comment.
                 </p>
             }
         </div>
     </div>
-
+    <div class="comments">
     @foreach (var comment in Model.Post.Comments
         .Where(x => x.State == CommentState.stateApproved && x.ParentId == null)
         .OrderByDescending(x => x.CreationTime))
@@ -62,7 +63,17 @@
                 <h5 class="mt-0">@comment.Author.DisplayName</h5>
                 @comment.Content
                 <br />
-                <a href="#" class="reply-button text-success" data-comment-id="@comment.Id">Reply</a>
+                @if (Request.IsAuthenticated)
+                {
+                    <a href="#" class="reply-button text-success" data-comment-id="@comment.Id"><small>Reply</small></a>
+                }
+                else
+                {
+                    <small>
+                        @Html.ActionLink("login", "Login", "Account", new { returnUrl = Request.Url.AbsolutePath }, new { @class = "text-success" })
+                        <text> to reply</text>
+                    </small>
+                }
                 <div class="reply-form-wrapper"></div>
                 @foreach (var subcomment in comment.Children
                     .Where(x => x.State == CommentState.stateApproved)
@@ -80,6 +91,7 @@
             </div>
         </div>
     }
+    </div>
 
 </div>
 
@@ -89,13 +101,31 @@
             if (location.hash == "#leave-a-comment") {
                 window.scrollTo(0, $("#leave-a-comment").offset().top - 65);
             }
-        }, 100);
+        }, 50);
+
+        setTimeout(function () {
+            if (location.hash == "#comments") {
+                window.scrollTo(0, $("#leave-a-comment").offset().top - 65);
+            }
+        }, 50);
 
         $(".reply-button").click(function (event) {
-
-            var commentId = $(this).data("comment-id");
             event.preventDefault();
+
+            //close if already opened
+            if ($(this).next(".reply-form-wrapper").html()) {
+                $(this).next(".reply-form-wrapper").html("");
+                return;
+            }
+            var commentId = $(this).data("comment-id");
             var frm = $("#leave-a-comment form").clone();
+
+            // change style of cloned form
+            // change style of the clone
+            frm.addClass("d-flex justify-content-end");
+            frm.find(".form-group").addClass("flex-fill mb-0");
+            frm.find("button").addClass("btn-sm align-self-end ml-1");
+
             frm.find("#ParentId").val(commentId);
             $(".reply-form-wrapper").html("")
             $(this).next(".reply-form-wrapper").html(frm); // clone kullanmazsak frm'nin kendisini taşır. outerHTML de kullanılabilir

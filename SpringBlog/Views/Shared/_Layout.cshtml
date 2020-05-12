@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        @Html.RouteLink("Home", "HomeDefault", null,  new { @class = "nav-link" })
+                        @Html.RouteLink("Home", "HomeDefault", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
@@ -50,13 +50,14 @@
                         </li>
                         <li class="nav-item dropdown d-none d-lg-block ml-2">
                             <div class="btn-group">
-                                @Html.ActionLink("Administration", "Index", "Dashboard", new { area = "Admin" }, new { @class = "btn btn-secondary" })
-                                <a href="#" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Html.ActionLink("Administration", "Index", "Dashboard", new { area = "Admin" }, new { @class = "nav-link" })
+                                <a href="#" class="nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </a>
-                                <div class="dropdown-menu">
-                                    @Html.ActionLink("Categories", "Index", "Categories", new { area = "Admin" }, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("Posts", "Index", "Posts", new { area = "Admin" }, new { @class = "dropdown-item" })
+                                <div class="dropdown-menu bg-dark">
+                                    @Html.ActionLink("Categories", "Index", "Categories", new { area = "Admin" }, new { @class = "dropdown-item text-secondary" })
+                                    @Html.ActionLink("Posts", "Index", "Posts", new { area = "Admin" }, new { @class = "dropdown-item text-secondary" })
+                                    @Html.ActionLink("Comments", "Index", "Comments", new { area = "Admin" }, new { @class = "dropdown-item text-secondary" })
                                 </div>
                             </div>
                         </li>
@@ -85,7 +86,7 @@
                 <div class="card my-4">
                     <h5 class="card-header">Search</h5>
                     <div class="card-body">
-                        @using (Html.BeginForm("Index", "Home", new { cid = ""}, FormMethod.Get, new { id = "frmSearch" }))
+                        @using (Html.BeginForm("Index", "Home", new { cid = "" }, FormMethod.Get, new { id = "frmSearch" }))
                         {
                             <div class="input-group">
                                 @Html.TextBox("q", null, new { @class = "form-control", placeholder = "Search for..." })

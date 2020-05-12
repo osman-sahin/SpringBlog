@@ -10,4 +10,6 @@
             event.preventDefault();
         }
     });
+
+    $("[data-toggle='tooltip']").tooltip();
 });

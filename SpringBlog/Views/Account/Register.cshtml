@@ -11,27 +11,46 @@
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+    <div class="form-group row">
+        <label for="DisplayName" class="col-md-4 col-form-label">
+            @Html.DisplayNameFor(m => m.DisplayName)
+            <i class="fas fa-info-circle text-success" data-toggle="tooltip" data-placement="right" title="The name that will be showed on your posts and comments"></i>
+        </label>
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.DisplayName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Email" class="col-md-4 col-form-label">
+            @Html.DisplayNameFor(m => m.Email)
+            <i class="fas fa-info-circle text-success"></i>
+        </label>
+        <div class="col-md-8">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+    <div class="form-group row">
+        <label for="Password" class="col-md-4 col-form-label">
+            @Html.DisplayNameFor(m => m.Password)
+            <i class="fas fa-info-circle text-success"></i>
+        </label>
+        <div class="col-md-8">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+    <div class="form-group row">
+        <label for="ConfirmPassword" class="col-md-4 col-form-label">
+            @Html.DisplayNameFor(m => m.ConfirmPassword)
+            <i class="fas fa-info-circle text-success"></i>
+        </label>
+        <div class="col-md-8">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+    <br />
+    <div class="form-group row">
+        <div class="offset-md-4 col-md-8">
+            <input type="submit" class="btn btn-success" value="Register" />
         </div>
     </div>
 }

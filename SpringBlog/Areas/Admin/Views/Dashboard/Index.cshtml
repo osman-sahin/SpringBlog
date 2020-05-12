@@ -8,16 +8,16 @@
     <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            @SmallBox(Model.CategoryCount.ToString(), "Categories", Url.Action("Index", "Categories"), "bg-info", "fas fa-table")
+            @SmallBox(Model.CategoryCount.ToString(), "Categories", Url.Action("Index", "Categories"), "bg-danger", "fas fa-table")
         </div>
         <div class="col-lg-3 col-6">
-            @SmallBox(Model.PostCount.ToString(), "Posts", Url.Action("Index", "Posts"), "bg-success", "far fa-file")
+            @SmallBox(Model.PostCount.ToString(), "Posts", Url.Action("Index", "Posts"), "bg-info", "far fa-file")
+        </div>
+        <div class="col-lg-3 col-6">
+            @SmallBox(Model.CommentCount.ToString(), "Comments", Url.Action("Index", "Comments"), "bg-success", "fas fa-comments")
         </div>
         <div class="col-lg-3 col-6">
             @SmallBox(Model.UserCount.ToString(), "Users", "#", "bg-warning", "fas fa-users")
-        </div>
-        <div class="col-lg-3 col-6">
-            @SmallBox(Model.AdminCount.ToString(), "Admins", "#", "bg-danger", "fas fa-user-shield")
         </div>
     </div>
     <!-- /.row -->
