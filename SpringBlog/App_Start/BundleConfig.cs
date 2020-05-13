@@ -19,7 +19,8 @@ namespace SpringBlog
             bundles.Add(new ScriptBundle("~/bundles/bootstrap", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js").Include(
                       "~/Scripts/bootstrap.bundle.js")); 
             
-            bundles.Add(new ScriptBundle("~/bundles/bs-file-input", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/bs-file-input",
+                "https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js").Include(
                        "~/Areas/Admin/plugins/bs-custom-file-input/bs-custom-file-input.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
