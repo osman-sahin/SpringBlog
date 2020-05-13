@@ -202,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EmailUtilities.cs" />
     <Compile Include="Helpers\IdentityHelpers.cs" />
     <Compile Include="Helpers\ImageUtilities.cs" />
     <Compile Include="Helpers\PostedImageAttribute.cs" />
@@ -1915,10 +1916,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
-    <Content Include="Content\bundle.css" />
-    <Content Include="Content\bundle.min.css">
-      <DependentUpon>bundle.css</DependentUpon>
-    </Content>
     <Content Include="Content\croppie.css" />
     <Content Include="Content\fontawesome-all.css" />
     <Content Include="Content\fontawesome-all.min.css" />
@@ -2225,6 +2222,7 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Shared\_CommentFormPartial.cshtml" />
+    <Content Include="Views\Account\EmailNotVerified.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
